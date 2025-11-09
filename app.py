@@ -1,7 +1,8 @@
 # Datenstructure 
 import math
-import random
 import json
+from math_utils import Angle3D
+from math_utils import OrthoPro
 
 corner1 = {
     "D0":{
@@ -23,8 +24,6 @@ corner1 = {
 }
 
 
-# GenerateData(A=1000)
-
 def LoadData(A="DummData.json",B=0): # A= file to load from, B = corner numer
   with open(A,"r") as f:
     data = json.load(f)
@@ -33,16 +32,6 @@ def LoadData(A="DummData.json",B=0): # A= file to load from, B = corner numer
 
 # print(LoadData(B=1))
 
-def Vectorlenth(A): # A = [x,y,z]
-  a = math.sqrt(pow(A[0],2)+pow(A[1],2)+pow(A[2],2))
-  return a
-
-def Angle3D(A,B,C=0): # A = [x,y,z] , B = [x,y,z] , c = 0 => radians 1 => Degrees
-  s = A[0]*B[0]+A[1]*B[1]+A[2]*B[2]
-  a = math.acos(s/(Vectorlenth(A)*Vectorlenth(B)))
-  if C != 0:
-    a = math.degrees(a)
-  return a
 
 # Could probably be substetudeded with the combinations from itertools
 def PearElementMaker(N): # N = Elements to generate unique pears out of
@@ -72,7 +61,7 @@ def GetKeys(A,B="A"): # A = Dictonary , B = Starting letter of Key
   # print(K)
   return(K)
 
-def GenrateAngles(A,B="D",C=0): # = Dictonary , C =  0 => radians 1 => Degrees 
+def GenrateAngles(A,B="D",C=0): # A = Dictonary , C =  0 => radians 1 => Degrees 
   k = GetKeys(A,B)
   ko = PearElementMaker(len(k))
   i = int(0)
