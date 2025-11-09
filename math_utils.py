@@ -37,10 +37,10 @@ def Add(A,B): # A = [a1,a2,a3] B = [b1,b2,b3]
     return added
 
 def OrthoPro(P,N,R=[0,0,0]): #P = [X,Y,Z] , Point to Projekt N = [n1,n2,n3] , Normal of Plane R=[x,y,z] ,
-    A = DotP(Add(P,Scale(R,-1)),N)
-    B = DotP(N,N)
-    C = Scale(N,A/B)
-    Projected = Add(P,Scale(C,-1))
+    a = DotP(Add(P,Scale(R,-1)),N)
+    b = DotP(N,N)
+    c = Scale(N,a/b)
+    Projected = Add(P,Scale(c,-1))
     return Projected
 
 # print(OrthoPro(T1,T2))
@@ -55,3 +55,11 @@ def Angle3D(A,B,C=0): # A = [x,y,z] , B = [x,y,z] , c = 0 => radians 1 => Degree
   if C != 0:
     a = math.degrees(a)
   return a
+
+def RotateThroughAxis(P,K,alpha): # P = [X,Y,Z] , Point K = [X,Y,Z] , alpha = Angle
+   a = Scale(P,math.cos(alpha))
+   b = Scale(CrossP(K,P),math.sin(alpha))
+   c = Scale(K,DotP(K,P)*(1-math.cos(alpha)))
+   d = Add(a,b)
+   roteted = Add(d,c)
+   return roteted

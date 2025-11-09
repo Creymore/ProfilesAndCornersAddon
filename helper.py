@@ -26,3 +26,10 @@ def GenerateData(A=1,B=4,C = "20x20",D = "DummData.json" ): # A = Number of Corn
   Data = json.dumps(jcorners, sort_keys=False, indent=2)
   with open(D, "w") as f:
     f.write(Data)
+
+def LoadData(A="DummData.json",B=0): # A= file to load from, B = corner numer
+  with open(A,"r") as f:
+    data = json.load(f)
+    data = data[f"corner{B}"]
+  return data
+

@@ -3,6 +3,8 @@ import math
 import json
 from math_utils import Angle3D
 from math_utils import OrthoPro
+from math_utils import CrossP
+from helper import LoadData
 
 corner1 = {
     "D0":{
@@ -24,13 +26,6 @@ corner1 = {
 }
 
 
-def LoadData(A="DummData.json",B=0): # A= file to load from, B = corner numer
-  with open(A,"r") as f:
-    data = json.load(f)
-    data = data[f"corner{B}"]
-  return data
-
-# print(LoadData(B=1))
 
 
 # Could probably be substetudeded with the combinations from itertools
