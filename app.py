@@ -5,8 +5,9 @@ from math_utils import Angle3D
 from math_utils import OrthoPro
 from math_utils import CrossP
 from helper import LoadData
+from math_utils import Norm
 
-corner1 = {
+Knot1 = {
     "D0":{
     "Profiltype" : "20x20",
     "Vector" : [-1,1,0]
@@ -26,6 +27,8 @@ corner1 = {
 }
 
 
+# This Functions gets the Axis and Angle with which Matching Families of Knots can be Transformed in to each other
+def AlineRotaion(A1,B1,A2,B2) # ALL = [X,Y,Z] 
 
 
 # Could probably be substetudeded with the combinations from itertools

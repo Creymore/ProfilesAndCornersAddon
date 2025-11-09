@@ -45,13 +45,16 @@ def OrthoPro(P,N,R=[0,0,0]): #P = [X,Y,Z] , Point to Projekt N = [n1,n2,n3] , No
 
 # print(OrthoPro(T1,T2))
 
-def Vectorlenth(A): # A = [x,y,z]
+def VectorLenth(A): # A = [x,y,z]
   a = math.sqrt(pow(A[0],2)+pow(A[1],2)+pow(A[2],2))
   return a
 
+def Norm(A): # A = [X,Y,Z]
+   return Scale(A,1/VectorLenth(A))
+
 def Angle3D(A,B,C=0): # A = [x,y,z] , B = [x,y,z] , c = 0 => radians 1 => Degrees
   s = DotP(A,B)
-  a = math.acos(s/(Vectorlenth(A)*Vectorlenth(B)))
+  a = math.acos(s/(VectorLenth(A)*VectorLenth(B)))
   if C != 0:
     a = math.degrees(a)
   return a
