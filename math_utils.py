@@ -59,10 +59,30 @@ def Angle3D(A,B,C=0): # A = [x,y,z] , B = [x,y,z] , c = 0 => radians 1 => Degree
     a = math.degrees(a)
   return a
 
-def RotateThroughAxis(P,K,alpha): # P = [X,Y,Z] , Point K = [X,Y,Z] , alpha = Angle
-   a = Scale(P,math.cos(alpha))
-   b = Scale(CrossP(K,P),math.sin(alpha))
-   c = Scale(K,DotP(K,P)*(1-math.cos(alpha)))
+#Source: https://en.wikipedia.org/wiki/Rodrigues%27_rotation_formula
+def RotateThroughAxis(Point,Axis,Angle): # P = [X,Y,Z] , Point K = [X,Y,Z] , alpha = Angle
+   Axis = Norm(Axis) # This is Really Important
+   a = Scale(Point,math.cos(Angle))
+   b = Scale(CrossP(Axis,Point),math.sin(Angle))
+   c = Scale(Axis,DotP(Axis,Point)*(1-math.cos(Angle)))
    d = Add(a,b)
    roteted = Add(d,c)
    return roteted
+
+
+if __name__ == "__main__":
+  def test():
+    V1 = [1,2,3]
+    V2 = [2,3,4]
+    Axis = [2,5,1]
+    alpha = 10
+    V1p = RotateThroughAxis(V1,Axis,alpha)
+    # V2p = RotateThroughAxis(V2,Axis,alpha)
+
+    # print(V1p)
+    # print(V2p)
+    # print(math.sin(math.pi))
+    # print(Angle3D(V1,V2))
+    # print(Angle3D(V1p,V2p))
+  test()
+  

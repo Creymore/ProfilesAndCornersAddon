@@ -1,11 +1,10 @@
 # Datenstructure 
-import math
-import json
 from math_utils import Angle3D
 from math_utils import OrthoPro
 from math_utils import CrossP
 from helper import LoadData
 from math_utils import Norm
+from math_utils import RotateThroughAxis
 
 Knot1 = {
     "D0":{
@@ -26,12 +25,35 @@ Knot1 = {
     }
 }
 
+V1 = [1,2,3]
+V2 = [2,3,4]
+Axis = [2,5,1]
+alpha = 10
+V1p = RotateThroughAxis(V1,Axis,alpha)
+V2p = RotateThroughAxis(V2,Axis,alpha)
+
 
 # This Functions gets the Axis and Angle with which Matching Families of Knots can be Transformed in to each other
 def AlineRotaion(A1,B1,A2,B2): # ALL = [X,Y,Z]
   A1,B1,A2,B2 = Norm(A1),Norm(B1),Norm(A2),Norm(B2) #Normalizes all the Input Vectors
-  pass
+  def TestMatch(A1,B1,A2,B2,tol): #tol = toleranz
+    a = Angle3D(A1,A2,1)
+    b = Angle3D(B1,B2,1)
+    c = a - b
+    print(c)
+    if c < tol:
+      print("Match")
+      return True
+    else:
+      print("Not a Match")
+      return False
+  if not TestMatch(A1,B1,A2,B2,10e-7):
+    return
+  N1 = CrossP(A1,B1)
+  N2 = CrossP(A2,B2)
+  
 
+AlineRotaion(V1,V1p,V2,V2p)
 
 # Could probably be substetudeded with the combinations from itertools
 def PearElementMaker(N): # N = Elements to generate unique pears out of
@@ -81,10 +103,10 @@ def AssoiativeAngles(A,B="D",C=0):  # A = Dictonary ,B = Key Starting Letter, C 
   AssoiativeAngles = {}
 
 
-AssoiativeAngles(A=Knot1,B="D",)
+# AssoiativeAngles(A=Knot1,B="D",)
 
 def test(A):
   pass
   
 
-test(Knot1)
+# test(Knot1)
