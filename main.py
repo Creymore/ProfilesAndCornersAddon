@@ -5,6 +5,8 @@ from math_utils import CrossP
 from helper import LoadData
 from math_utils import Norm
 from math_utils import RotateThroughAxis
+from math_utils import Add
+from math_utils import Scale
 
 Knot1 = {
     "D0":{
@@ -51,6 +53,7 @@ def AlineRotaion(A1,B1,A2,B2): # ALL = [X,Y,Z]
     return
   N1 = CrossP(A1,B1)
   N2 = CrossP(A2,B2)
+  c1 = Scale()
   
 
 AlineRotaion(V1,V1p,V2,V2p)
