@@ -28,7 +28,9 @@ Knot1 = {
 
 
 # This Functions gets the Axis and Angle with which Matching Families of Knots can be Transformed in to each other
-def AlineRotaion(A1,B1,A2,B2) # ALL = [X,Y,Z] 
+def AlineRotaion(A1,B1,A2,B2): # ALL = [X,Y,Z]
+  A1,B1,A2,B2 = Norm(A1),Norm(B1),Norm(A2),Norm(B2) #Normalizes all the Input Vectors
+  pass
 
 
 # Could probably be substetudeded with the combinations from itertools
@@ -79,10 +81,10 @@ def AssoiativeAngles(A,B="D",C=0):  # A = Dictonary ,B = Key Starting Letter, C 
   AssoiativeAngles = {}
 
 
-AssoiativeAngles(A=corner1,B="D",)
+AssoiativeAngles(A=Knot1,B="D",)
 
 def test(A):
   pass
   
 
-test(corner1)
+test(Knot1)

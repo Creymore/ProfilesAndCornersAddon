@@ -22,7 +22,7 @@ def GenerateData(A=1,B=4,C = "20x20",D = "DummyData.json" ): # A = Number of Kno
         knot.update({f"D{i}":Direction})
        # print(Direction)
     # print(corner)
-    jknots.update({f"knot{n}" : knot})
+    jknots.update({f"Knot{n}" : knot})
   Data = json.dumps(jknots, sort_keys=False, indent=2)
   with open(D, "w") as f:
     f.write(Data)
@@ -32,6 +32,6 @@ GenerateData(A=1000)
 def LoadData(A="DummyData.json",B=0): # A= file to load from, B = corner numer
   with open(A,"r") as f:
     data = json.load(f)
-    data = data[f"knot{B}"]
+    data = data[f"Knot{B}"]
   return data
 
