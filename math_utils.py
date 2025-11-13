@@ -52,10 +52,10 @@ def VectorLenth(Vector): # A = [x,y,z]
 def Norm(Vector): # A = [X,Y,Z]
    return Scale(Vector,1/VectorLenth(Vector))
 
-def Angle3D(Vector1,Vector2,C=0): # A = [x,y,z] , B = [x,y,z] , c = 0 => radians 1 => Degrees
+def Angle3D(Vector1,Vector2,InDeg=False): # A = [x,y,z] , B = [x,y,z] , c = 0 => radians 1 => Degrees
   s = DotP(Vector1,Vector2)
   a = math.acos(s/(VectorLenth(Vector1)*VectorLenth(Vector2)))
-  if C != 0:
+  if InDeg is True:
     a = math.degrees(a)
   return a
 
@@ -69,11 +69,17 @@ def RotateThroughAxis(Point,Axis,Angle): # P = [X,Y,Z] , Point K = [X,Y,Z] , alp
    roteted = Add(d,c)
    return roteted
 
+def IsOppesite(Vector1,Vector2,tol=1e-7):
+    #  if VectorLenth(Add(Vector1,Scale(Vector2,-1))) < tol:
+   if abs(Angle3D(Vector1,Vector2) - math.pi) < tol:
+      return True
+   else:
+      return False
 
 if __name__ == "__main__":
   def test():
-    V1 = [1,2,3]
-    V2 = [2,3,4]
+    V1 = [1,0,0]
+    V2 = [-2,1,0]
     Axis = [2,5,1]
     alpha = 10
     V1p = RotateThroughAxis(V1,Axis,alpha)
@@ -84,5 +90,7 @@ if __name__ == "__main__":
     # print(math.sin(math.pi))
     # print(Angle3D(V1,V2))
     # print(Angle3D(V1p,V2p))
+    print(abs(Angle3D(V1,V2)-math.pi))
+    print(IsOppesite(V1,V2))
   test()
   
